@@ -1,0 +1,21 @@
+curl --location 'localhost:8080/vending/products'
+
+
+
+curl --location 'localhost:8080/vending/cash' \
+--header 'Content-Type: application/json' \
+--data '{
+    "insertedAmount": 100.00
+}'
+
+
+
+
+
+curl --location 'localhost:8080/vending/select' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": 4,
+    "quantity":4
+
+}'

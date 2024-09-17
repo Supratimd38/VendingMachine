@@ -17,16 +17,16 @@ public class Transaction {
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 
-	private double insertedAmount;
+	private double totalAmount;
 	private double change;
 	private String status;
 
 	public Transaction() {
 	}
 
-	public Transaction(Product product, double insertedAmount, double change, String status) {
+	public Transaction(Product product, double totalAmount, double change, String status) {
 		this.product = product;
-		this.insertedAmount = insertedAmount;
+		this.totalAmount = totalAmount;
 		this.change = change;
 		this.status = status;
 	}
@@ -47,12 +47,12 @@ public class Transaction {
 		this.product = product;
 	}
 
-	public double getInsertedAmount() {
-		return insertedAmount;
+	public double gettotalAmount() {
+		return totalAmount;
 	}
 
-	public void setInsertedAmount(double insertedAmount) {
-		this.insertedAmount = insertedAmount;
+	public void settotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 	public double getChange() {
