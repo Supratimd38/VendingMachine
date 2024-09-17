@@ -20,12 +20,6 @@ CREATE TABLE IF NOT EXISTS transactions (
 
 
 
-
-
-
-
-
-
 INSERT INTO products (NAME, PRICE, QUANTITY) VALUES ('Coke', 40.0, 10);
 INSERT INTO products (NAME, PRICE, QUANTITY) VALUES ('Pepsi', 30.0, 8);
 INSERT INTO products (NAME, PRICE, QUANTITY) VALUES ('Water', 20.0, 5);
