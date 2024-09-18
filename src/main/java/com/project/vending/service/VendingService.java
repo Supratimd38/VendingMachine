@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.project.vending.entity.Product;
 import com.project.vending.entity.Transaction;
+import com.project.vending.exceptions.InsufficientFundsException;
+import com.project.vending.exceptions.OutOfStockException;
+import com.project.vending.exceptions.ProductNotFoundException;
 import com.project.vending.repository.ProductRepository;
 import com.project.vending.repository.TransactionRepository;
 
@@ -38,17 +41,17 @@ public class VendingService {
 	    
 	    public Transaction selectProduct(Long productId, int quantity) {
 	        Product product = productRepository.findById(productId).orElseThrow(() -> 
-	            new IllegalArgumentException("Invalid product selected!")
-	        );
+	        new ProductNotFoundException("Product with ID " + productId + " not found"));
+	       
 
 	        double totalPrice = product.getPrice()* quantity;
 	        
 	        if (product.getQuantity() == 0 && product.getQuantity()<quantity) {
-	            throw new IllegalArgumentException("Product out of stock!");
+	        	 throw new OutOfStockException("Product is out of stock");
 	        }
 
 	        if (balance < totalPrice) {
-	            throw new IllegalArgumentException("Insufficient funds!");
+	        	 throw new InsufficientFundsException("Insufficient funds. Please insert more cash.");
 	        }
 
 	        product.setQuantity(product.getQuantity() - quantity);
