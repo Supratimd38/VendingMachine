@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.vending.entity.Product;
 import com.project.vending.entity.Transaction;
@@ -28,7 +29,7 @@ public class VendingService {
 	
 	  private double balance = 0.0;
 	
-	  @Cacheable("products")
+	
 	  public List<Product> getAvailableProducts() {
 	        return productRepository.findAll();
 	    }
@@ -42,7 +43,7 @@ public class VendingService {
 	        return "Inserted: " + amount;
 	    }
 	    
-	    
+	    @Transactional
 	    public Transaction selectProduct(Long productId, int quantity) {
 	        Product product = productRepository.findById(productId).orElseThrow(() -> 
 	        new ProductNotFoundException("Product with ID " + productId + " not found"));
