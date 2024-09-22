@@ -3,6 +3,8 @@ package com.project.vending.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import com.project.vending.entity.Product;
@@ -14,6 +16,7 @@ import com.project.vending.repository.ProductRepository;
 import com.project.vending.repository.TransactionRepository;
 
 @Service
+@EnableCaching
 public class VendingService {
 	
 	@Autowired
@@ -25,6 +28,7 @@ public class VendingService {
 	
 	  private double balance = 0.0;
 	
+	  @Cacheable("products")
 	  public List<Product> getAvailableProducts() {
 	        return productRepository.findAll();
 	    }
